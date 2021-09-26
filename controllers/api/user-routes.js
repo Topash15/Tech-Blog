@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const { User, Post, Comment } = require("../../models");
 
 // get all users
 router.get("/", (req, res) => {
@@ -13,6 +13,43 @@ router.get("/", (req, res) => {
     });
 });
 
+// find user based on user_id
+router.get("/:id", (req, res) => {
+  User.findOne({
+    attributes: { exclude: ["password"] },
+    where: {
+      id: req.params.id,
+    },
+    include: [
+      // finds posts made by user
+      {
+        model: Post,
+        attributes: ["id", "title", "text", "created_at"],
+      },
+      // finds comments made by user
+      {
+        model: Comment,
+        attributes: ["id", "comment_text", "created_at"],
+        include: {
+          model: Post,
+          attributes: ["title"],
+        },
+      }
+    ],
+  })
+    .then((dbUserData) => {
+      if (!dbUserData) {
+        res.status(404).json({ message: "No user found with this id" });
+        return;
+      }
+      res.json(dbUserData);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 // add users
 router.post("/", (req, res) => {
   User.create({
@@ -20,14 +57,14 @@ router.post("/", (req, res) => {
     email: req.body.email,
     password: req.body.password,
   })
-    .then((dbPostdata) => {
-        req.session.save(()=>{
-            req.session.user_id = dbUserData.id;
-            req.session.username = dbUserData.username;
-            req.session.loggedIn = true;
+    .then((dbUserData) => {
+      req.session.save(() => {
+        req.session.user_id = dbUserData.id;
+        req.session.username = dbUserData.username;
+        req.session.loggedIn = true;
 
-        res.json(dbPostdata)
-    })
+      res.json(dbUserData);
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -52,34 +89,30 @@ router.post("/login", (req, res) => {
     const validPw = dbUserData.checkPassword(req.body.password);
 
     if (!validPw) {
-      res
-        .status(400)
-        .json({ message: "Wrong password!" });
+      res.status(400).json({ message: "Wrong password!" });
       return;
     }
 
     // add cookie that user is logged in
     req.session.save(() => {
-        req.session.user_id = dbUserData.id;
-        req.session.username = dbUserData.username;
-        req.session.loggedIn = true;
-        
-        res.json({ user: dbUserData, message: 'You are now logged in!' });
+      req.session.user_id = dbUserData.id;
+      req.session.username = dbUserData.username;
+      req.session.loggedIn = true;
+
+      res.json({ user: dbUserData, message: "You are now logged in!" });
     });
-    
   });
 });
 
 // logout
-router.post('logout', (req, res) => {
-    if (req.session.loggedIn) {
-        req.session.destroy(() => {
-            res.status(204).end();
-        });
-    }
-    else {
-        res.status(403).end();
-    }
-})
+router.post("/logout", (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(403).end();
+  }
+});
 
 module.exports = router;

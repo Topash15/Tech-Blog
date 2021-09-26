@@ -1,0 +1,18 @@
+*{
+    box-sizing: border-box;
+}
+
+:root{
+    --primary: #474747;
+    --secondary: #ac0000;
+    --teritiary: #4fa5eb;
+}
+
+body, html{
+    background-color: var(--primary);
+    color: var(--teritiary);
+}
+
+a{
+    color: var(--teritiary);
+}

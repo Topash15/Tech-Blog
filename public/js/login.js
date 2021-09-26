@@ -1,33 +1,27 @@
 // function to log user in
-async function login(){
-    const response = await fetch('api/users/login', {
-        method: 'POST',
+async function login(event){
+    event.preventDefault();
+
+    const email = document.querySelector('#email-login').value.trim();
+    const password = document.querySelector('#password-login').value.trim();
+  
+    if (email && password) {
+      const response = await fetch('/api/users/login', {
+        method: 'post',
+        body: JSON.stringify({
+          email,
+          password
+        }),
         headers: { 'Content-Type': 'application/json' }
-    });
-
-    // sends to dashboard if successful
-    if (response.ok) {
-        document.location.replace('/dashboard')
+      });
+  
+      if (response.ok) {
+        document.location.replace('/dashboard');
+      } else {
+        alert(response.statusText);
+      }
     }
-}
-
-
-// function to log user out
-async function logout() {
-    const response = await fetch('/api/users/logout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json'}
-    });
-
-    // returns to homepage if successful
-    if (response.ok) {
-        document.location.replace('/')
-    } else {
-        alert(response.statusText)
-    }
-}
+  }
 
 // log in button event listener
-document.querySelector('#login').addEventListener('click', login);
-// log out button event listener
-document.querySelector('#logout').addEventListener('click', logout);
+document.querySelector('.login-form').addEventListener('submit', login);
