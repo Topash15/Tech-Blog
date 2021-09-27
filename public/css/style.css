@@ -1,0 +1,58 @@
+*{
+    box-sizing: border-box;
+}
+
+:root{
+    --primary: #474747;
+    --secondary: #ac0000;
+    --teritiary: #4fa5eb;
+}
+
+body, html{
+    background-color: var(--primary);
+    color: var(--teritiary);
+}
+
+a{
+    color: var(--teritiary);
+}
+
+li{
+    list-style-type: none;
+}
+
+.navbar{
+    border-bottom: 1px solid var(--secondary);
+    margin-bottom: 2.5%;
+}
+
+.card{
+    background-color: var(--primary);
+    border-bottom: 1px solid var(--secondary);
+    width: 75%;
+    margin-left: 10%
+}
+
+.comment-title{
+    margin-left: 10%;
+}
+
+.edit-link{
+    margin-left: 10%;
+}
+
+.title{
+    margin-left: 10%;
+}
+
+.add-post-div{
+    border-bottom: 1px solid var(--secondary);
+}
+
+.text{
+    margin-left: 10%;
+}
+
+.comment-form{
+    align-items: center;
+}
