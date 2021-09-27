@@ -9,12 +9,12 @@
   
   ## Table of Contents
   
-  * [Deployment](#deployment)
+  * [Link](#link)
   * [License](#license)
   * [Questions](#questions)
   
   
-  ## Deployment
+  ## Link
   
   https://tech-blog-topash.herokuapp.com/
     
