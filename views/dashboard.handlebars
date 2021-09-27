@@ -1,27 +1,25 @@
-<section>
-    <h2>Create New Post</h2>
-
-      <form class="new-post-form">
-    <div>
-      <label for="post-title">Title</label>
-      <input type="text" id="post-title" name="post-title" />
-    </div>
-    <div>
-      <label for="post-text">Text</label>
-      <textarea type="text" id="post-text" name="post-text"></textarea>
-    </div>
-    <button type="submit" class="btn">Create</button>
-  </form>
-</section>
+<div class="container add-post-div">
+<form class="new-post-form mx-auto">
+  <div class="mb-3">
+    <label for="post-title" class="form-label">Title</label>
+    <input type="text" class="form-control" id="post-title">
+  </div>
+  <div class="mb-3">
+    <label for="post-text" class="form-label">Text</label>
+    <textarea type="text" class="form-control" id="post-text"></textarea>
+  </div>
+  <button type="submit" class="btn btn-dark">Submit</button>
+</form>
+</div>
 
 {{#if posts.length}}
 <section>
-  <h2>Your Posts</h2>
+  <h2 class = "title">Your Posts</h2>
   <ol>
     {{#each posts as |post|}}
     <li>
       {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+      <a href="/dashboard/edit/{{post.id}}" class="edit-link link-info">Edit post</a>
     </li>
     {{/each}}
   </ol>

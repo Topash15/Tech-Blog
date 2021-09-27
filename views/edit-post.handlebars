@@ -1,4 +1,4 @@
-<article>
+{{!-- <article>
   <a href="/dashboard"> &larr; Back to dashboard</a>
   <h2>
     Edit Post
@@ -18,17 +18,24 @@
     <button type="submit">Save post</button>
     <button type="button" class="delete-post-btn">Delete post</button>
   </form>
-</article>
+</article> --}}
 
-<form class="comment-form">
-  <div>
-    <textarea name="comment-body"></textarea>
+<div class="container">
+<form class="edit-post-form">
+  {{> post-info post}}
+  <div class="mb-3">
+    <label for="edit-post-title" class="form-label">Title</label>
+    <input type="text" class="form-control" id="edit-post-title">
   </div>
-
-  <div>
-    <button type="submit">add comment</button>
+  <div class="mb-3">
+    <label for="edit-post-text" class="form-label">Text</label>
+    <textarea type="text" class="form-control" id="edit-post-text"></textarea>
   </div>
+  <button type="submit" class="btn btn-dark">Save Post</button>
+  <button type="submit" class="delete-post-btn btn btn-dark">Delete Post</button>
 </form>
+</div>
+
 
 {{> comments post.comments}}
 

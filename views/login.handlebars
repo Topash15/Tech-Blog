@@ -1,16 +1,16 @@
-<form class="login-form">
-  <div>
-    <label for="email-login">Email:</label>
-    <input type="text" id="email-login" />
+<div class="container">
+<form class="login-form mx-auto">
+  <div class="mb-3">
+    <label for="email-login" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="email-login" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   </div>
-  <div>
-    <label for="password-login">Password:</label>
-    <input type="password" id="password-login" />
-  </div>
-  <div>
-    <button type="submit">Login</button>
+  <div class="mb-3">
+    <label for="password-login" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password-login">
   </div>
   <a href="/signup">Don't have an account?</a>
+  <button type="submit" class="btn btn-dark">Submit</button>
 </form>
-
+</div>
 <script src="/js/login.js"></script>

@@ -1,18 +1,25 @@
 {{> post-info post}}
 
 {{#if loggedIn}}
-<form class="comment-form">
-  <div>
-    <textarea id= "comment-body" name="comment-body"></textarea>
-  </div>
-
-  <div>
-    <button type="submit">Add comment</button>
-  </div>
-</form>
+<div class="container">
+  <form class="comment-form mx-auto">
+    <div class="mb-3">
+      <label for="comment" class="form-label">Leave a comment below</label>
+      <textarea class="form-control" id="comment-body"></textarea>
+    </div>
+    <div>
+      <button type="submit" class="button">Add comment</button>    
+    </div>
+  </form>
+</div>
 {{/if}}
 
-{{> comments post.comments}}
+<h5 class="comment-title">Comments</h5>
+{{#if post.comments}}
+  {{> comments post.comments}}
+{{else}}
+<p class = "text">No comments yet.</p>
+{{/if}}
 
 {{#if loggedIn}}
 <script src="/js/comment.js"></script>

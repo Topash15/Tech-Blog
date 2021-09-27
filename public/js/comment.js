@@ -1,5 +1,9 @@
+console.log('loaded')
 async function commentForm(event) {
+
     event.preventDefault();
+
+    console.log("click")
   
     const comment_text = document.querySelector('#comment-body').value.trim();
     const post_id = window.location.toString().split('/')[
