@@ -5,7 +5,7 @@
 
   ## Description 
   
-  This application is used for sharing your technology knowledge. It allows for users to create an account, create posts, and leave comments on other posts. See the demo below to view the capablitiles of the API routes.
+  This application is used for sharing your technology knowledge. It allows for users to create an account, create posts, and leave comments on other posts.
   
   ## Table of Contents
   
@@ -16,7 +16,7 @@
   
   ## Demo
   
-  https://www.youtube.com/watch?v=JXGrrIG8mBs
+
     
   
   ## License
